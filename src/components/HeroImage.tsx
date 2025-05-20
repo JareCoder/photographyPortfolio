@@ -2,7 +2,8 @@
 import React, { useEffect, useRef } from 'react'
 
 interface HeroImageProps {
-  title: string
+  title?: string
+  sideText?: string
   tags: string[]
   backgroundImage: string
   mobileBackgroundImage: string
@@ -13,6 +14,7 @@ interface HeroImageProps {
 
 export default function HeroImage({
   title,
+  sideText,
   tags,
   backgroundImage,
   mobileBackgroundImage,
@@ -92,23 +94,32 @@ export default function HeroImage({
           aria-hidden="true"
         />
       </div>
-      <div className="relative">
-        <h1 className="prose prose-slate uppercase font-overpass-mono text-[rgb(245,245,245)] text-4xl fade-in-up delay-150">
-          {title}
-        </h1>
-        <div className="flex gap-2 mt-2 fade-in-up delay-300 justify-center">
-          {tags.map((tag) => (
-            <p key={tag} className="font-overpass-mono text-xl">
-              <a
-                className="bg-slate-600 text-[rgb(245,245,245)] bg-opacity-50 px-2 py-1 rounded-sm no-underline"
-                href={`../tags/${tag}`}
-              >
-                {tag}
-              </a>
+      {sideText && (
+          <div className="absolute top-1/2 left-0 w-full h-full flex">
+            <p className="w-1/2 prose prose-slate uppercase font-overpass-mono text-[rgb(245,245,245)] text-4xl fade-in-up delay-150">
+              {sideText}
             </p>
-          ))}
+          </div>
+        )}
+      {title && (
+        <div className="relative">
+          <h1 className="prose prose-slate uppercase font-overpass-mono text-[rgb(245,245,245)] text-4xl fade-in-up delay-150">
+            {title}
+          </h1>
+          <div className="flex gap-2 mt-2 fade-in-up delay-300 justify-center">
+            {tags.map((tag) => (
+              <p key={tag} className="font-overpass-mono text-xl">
+                <a
+                  className="bg-slate-600 text-[rgb(245,245,245)] bg-opacity-50 px-2 py-1 rounded-sm no-underline"
+                  href={`../tags/${tag}`}
+                >
+                  {tag}
+                </a>
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <img src={backgroundImage} alt={alt} className="sr-only" />
     </div>
   )

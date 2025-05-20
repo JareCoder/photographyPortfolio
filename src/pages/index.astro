@@ -1,96 +1,70 @@
 ---
-import Homepage from "../components/Homepage.astro";
-const { pageTitle } = Astro.props;
-import { getCollection, type DataEntryMap } from "astro:content";
-import { getImage } from "astro:assets";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroImage from '../components/HeroImage.tsx';
+import { getImage } from 'astro:assets';
 
-const collections = ["long_form", "short_form", "muses", "zeitweilig"];
-let allImages: { large: string[]; medium: string[]; small: string[] } = { large: [], medium: [], small: [] };
-let allAlts: string[] = [];
-let allUrls: string[] = [];
+const backgorundImage = await getImage({
+    src: '/public/images/Homepage_banner.png',
+    alt: 'Andreas Hartmann - Homepage',
+    width: 3840,
+    height: 2160,
+    decoding: 'async',
+    format: 'webp',
+    quality: 65,
+})
 
-for (const collection of collections) {
-  const allContent = await getCollection(collection as keyof DataEntryMap);
-  const postsWithImages = allContent.filter(
-    (post) => post.data.image?.src && post.data.image?.alt,
-  );
-
-  const imagePromises = postsWithImages.map(async (post) => {
-    const [largeImage, mediumImage, smallImage] = await Promise.all([
-      getImage({
-        src: post.data.image!.src,
-        alt: post.data.image!.alt,
-        width: 1920,
-        height: 1080,
-        decoding: "async",
-        format: "avif",
-        quality: 65,
-      }),
-      getImage({
-        src: post.data.image!.src,
-        alt: post.data.image!.alt,
-        width: 1280,
-        height: 720,
-        decoding: "async",
-        format: "avif",
-        quality: 65,
-      }),
-      getImage({
-        src: post.data.image!.src,
-        alt: post.data.image!.alt,
-        width: 854,
-        height: 480,
-        decoding: "async",
-        format: "avif",
-        quality: 65,
-      }),
-    ]);
-
-    return {
-      large: largeImage.src,
-      medium: mediumImage.src,
-      small: smallImage.src,
-      alt: post.data.image!.alt,
-      url: `/${collection}/${post.id}`,
-    };
-  });
-
-  const results = await Promise.all(imagePromises);
-
-  results.forEach((result) => {
-    allImages.large.push(result.large);
-    allImages.medium.push(result.medium);
-    allImages.small.push(result.small);
-    allAlts.push(result.alt);
-    allUrls.push(result.url);
-  });
-}
-
-const imageSizes = {
-  width: {
-    large: 1920,
-    medium: 1280,
-    small: 854,
-  },
-  height: {
-    large: 1080,
-    medium: 720,
-    small: 480,
-  },
-};
+const mobileBackgroundImage = await getImage({
+    src: '/public/images/Homepage_banner.png',
+    alt: 'Andreas Hartmann - Homepage',
+    width: 1920,
+    height: 1080,
+    decoding: 'async',
+    format: 'webp',
+    quality: 65,
+})
 ---
 
-{
-  allImages.large.length > 0 ? (
-    <Homepage
-      title={pageTitle}
-      images={JSON.stringify(allImages)}
-      alt={JSON.stringify(allAlts)}
-      urls={JSON.stringify(allUrls)}
-      width={imageSizes.width}
-      height={imageSizes.height}
+<BaseLayout title="Andreas Hartmann - Homepage" description="Making memories by capturing them" is404Page={false}>
+    <HeroImage
+        client:load
+        backgroundImage={backgorundImage.src}
+        mobileBackgroundImage={mobileBackgroundImage.src}
+        sideText="Making memories by capturing them"
+        positionX="50%"
+        positionY="50%"
+        tags={[]}
+        alt="Andreas Hartmann - Homepage"
     />
-  ) : (
-    <p>No images found</p>
-  )
-}
+    <div class="flex flex-col items-center justify-center w-full h-full gap-4 px-4 py-8">
+
+        <h1 class="text-3xl font-bold text-center text-slate-900 dark:text-slate-100">
+            My Description Title
+        </h1>
+        <p class="text-lg text-left text-slate-700 dark:text-slate-300 w-1/2">
+            Do you ever have those moments where you listen to music that hits perfectly? You look out 
+            the window, its pouring rain, and you feel like you are the main protagonist of this 
+            movie-like life of yours?
+            <br />
+            <br />
+            In a sense, those moments are reality.  We are the main protagonist of a story that we are 
+            still forming. A story with drama, action, chaos, bliss and humor. I am here to make sure 
+            that people feel like how they should, the main character. Capturing moments of life while 
+            actively living it. In my eyes life takes priority over the pictures; if we live how we want 
+            to in the moment, the pictures will follow. This is the essence of my photography:
+            <br />
+            <br />
+            <strong>Making memories by capturing them</strong>
+            <br />
+            <br />
+            This website's purpose is to showcase various memories of different people, 
+            locations and experiences ranging from 2015 to present times. Please feel free to 
+            browse my Portfolio, and feel free to leave a comment.
+        </p>
+
+
+   
+</BaseLayout>
+
+
+
+
