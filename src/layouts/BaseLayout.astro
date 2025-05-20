@@ -8,7 +8,7 @@ import { Font } from "astro:assets";
 import "../styles/global.css";
 let baseUrl = new URL(Astro.request.url).origin;
 const metaImage = await getImage({
-  src: "/images/homepage_banner.png",
+  src: "/images/Homepage_banner.png",
   alt: "Banner image for Andres Hartmann's homepage",
   height: 720,
   width: 1280,
@@ -113,7 +113,7 @@ const formattedUpdatedDate = updatedDate
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title || pageTitle} />
     <meta property="og:description" content={description || metaDescription} />
-    <meta property="og:site_name" content={site_name || "stoicopa"} />
+    <meta property="og:site_name" content={site_name || "Andreas Hartmann"} />
     <meta
       property="og:image"
       content={image || `${baseUrl}${metaImage?.src}`}
