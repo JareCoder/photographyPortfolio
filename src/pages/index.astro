@@ -1,16 +1,16 @@
 ---
 import Homepage from "../components/Homepage.astro";
 const { pageTitle } = Astro.props;
-import { getCollection } from "astro:content";
+import { getCollection, type DataEntryMap } from "astro:content";
 import { getImage } from "astro:assets";
 
 const collections = ["long_form", "short_form", "muses", "zeitweilig"];
-let allImages = { large: [], medium: [], small: [] };
-let allAlts = [];
-let allUrls = [];
+let allImages: { large: string[]; medium: string[]; small: string[] } = { large: [], medium: [], small: [] };
+let allAlts: string[] = [];
+let allUrls: string[] = [];
 
-for (let collection of collections) {
-  const allContent = await getCollection(collection);
+for (const collection of collections) {
+  const allContent = await getCollection(collection as keyof DataEntryMap);
   const postsWithImages = allContent.filter(
     (post) => post.data.image?.src && post.data.image?.alt,
   );
@@ -18,8 +18,8 @@ for (let collection of collections) {
   const imagePromises = postsWithImages.map(async (post) => {
     const [largeImage, mediumImage, smallImage] = await Promise.all([
       getImage({
-        src: post.data.image.src,
-        alt: post.data.image.alt,
+        src: post.data.image!.src,
+        alt: post.data.image!.alt,
         width: 1920,
         height: 1080,
         decoding: "async",
@@ -27,8 +27,8 @@ for (let collection of collections) {
         quality: 65,
       }),
       getImage({
-        src: post.data.image.src,
-        alt: post.data.image.alt,
+        src: post.data.image!.src,
+        alt: post.data.image!.alt,
         width: 1280,
         height: 720,
         decoding: "async",
@@ -36,8 +36,8 @@ for (let collection of collections) {
         quality: 65,
       }),
       getImage({
-        src: post.data.image.src,
-        alt: post.data.image.alt,
+        src: post.data.image!.src,
+        alt: post.data.image!.alt,
         width: 854,
         height: 480,
         decoding: "async",
@@ -50,7 +50,7 @@ for (let collection of collections) {
       large: largeImage.src,
       medium: mediumImage.src,
       small: smallImage.src,
-      alt: post.data.image.alt,
+      alt: post.data.image!.alt,
       url: `/${collection}/${post.id}`,
     };
   });
