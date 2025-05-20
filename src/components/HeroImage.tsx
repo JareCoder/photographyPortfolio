@@ -46,6 +46,7 @@ export default function HeroImage({
     observer.observe(heroElement)
 
     function updateParallax() {
+      if (!parallaxElement) return
       const scrollPosition = window.pageYOffset
       const parallaxFactor = 0.3
       parallaxElement.style.transform = `translate3d(0, ${scrollPosition * parallaxFactor}px, 0)`
