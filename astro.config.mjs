@@ -13,7 +13,7 @@ export default defineConfig({
   site: "https://www.erfianugrah.com",
 
   image: {
-    domains: ["erfianugrah.com", "cdn.erfianugrah.com"],
+    domains: ["erfianugrah.com"],
     service: {
       entrypoint: "astro/assets/services/sharp",
       config: {
