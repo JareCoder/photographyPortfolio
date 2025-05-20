@@ -8,7 +8,7 @@ import { Font } from "astro:assets";
 import "../styles/global.css";
 let baseUrl = new URL(Astro.request.url).origin;
 const metaImage = await getImage({
-  src: "/public/images/homepage_banner.png",
+  src: "/images/homepage_banner.png",
   alt: "Banner image for Andres Hartmann's homepage",
   height: 720,
   width: 1280,
@@ -60,7 +60,7 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: site_name || "stoicopa",
+  name: site_name || "Andres Hartmann",
   url: baseUrl,
   description: description || metaDescription,
   potentialAction: {
