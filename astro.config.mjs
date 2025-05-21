@@ -10,10 +10,10 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.erfianugrah.com",
+  site: "https://photography-portfolio-three-eta.vercel.app",
 
   image: {
-    domains: ["erfianugrah.com"],
+    domains: ["photography-portfolio-three-eta.vercel.app"],
     service: {
       entrypoint: "astro/assets/services/sharp",
       config: {
