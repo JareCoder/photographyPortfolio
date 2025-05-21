@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroImage from '../components/HeroImage.tsx';
 import { getImage } from 'astro:assets';
 
-const backgorundImage = await getImage({
+const backgroundImage = await getImage({
     src: '/images/Homepage_banner.png',
     alt: 'Andreas Hartmann - Homepage',
     width: 3840,
@@ -24,10 +24,10 @@ const mobileBackgroundImage = await getImage({
 })
 ---
 
-<BaseLayout title="Andreas Hartmann - Homepage" description="Making memories by capturing them" is404Page={false}>
+<BaseLayout title="Andreas Hartmann - Homepage" description="Making memories by capturing them" is404Page={false} image={backgroundImage.src} >
     <HeroImage
         client:load
-        backgroundImage={backgorundImage.src}
+        backgroundImage={backgroundImage.src}
         mobileBackgroundImage={mobileBackgroundImage.src}
         sideText="Making memories by capturing them"
         positionX="50%"
