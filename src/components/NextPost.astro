@@ -132,7 +132,11 @@ const favicon = await optimizeImage(
     selectedPosts.forEach((post, index) => {
       const element = postElements[index];
       if (element) {
-        element.href = `/${collection}/${post.id}/`;
+        if(collection === "imageCollections") {
+          element.href = `/collections/${post.id}/`;
+        } else {
+          element.href = `/${collection}/${post.id}/`;
+        } 
         element.style.display = "block";
 
         const img = element.querySelector("img");

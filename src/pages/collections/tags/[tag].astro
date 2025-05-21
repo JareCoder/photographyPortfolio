@@ -4,13 +4,13 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import BlogPost from "../../../components/BlogPost.astro";
 import { sortByDate } from "../../../components/sortbydate";
 export async function getStaticPaths() {
-  const allLongForm = await getCollection("long_form");
+  const allCollections = await getCollection("imageCollections");
   const uniqueTags = [
-    ...new Set(allLongForm.map((post) => post.data.tags).flat()),
+    ...new Set(allCollections.map((post) => post.data.tags).flat()),
   ];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = allLongForm.filter((post) =>
+    const filteredPosts = allCollections.filter((post) =>
       post.data.tags.includes(tag),
     );
     return {
@@ -30,7 +30,7 @@ const { posts } = Astro.props;
       .sort(sortByDate)
       .map((post) => (
         <BlogPost
-          url={`/long_form/${post.id}/`}
+          url={`/collections/${post.id}/`}
           image={post.data?.image?.src || ""}
           alt={post.data?.image?.alt || ""}
           title={post.data?.title || ""}
