@@ -27,8 +27,8 @@ const favicon_webp = await getImage({
   format: "png",
 });
 
-const pageTitle = "Andres Hartmann";
-const metaDescription = "My personal hamster wheel.";
+const pageTitle = "Andreas Hartmann - Photography";
+const metaDescription = "Making memories by capturing them";
 const {
   image,
   description,
@@ -60,7 +60,7 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: site_name || "Andres Hartmann",
+  name: site_name || "Andreas Hartmann - Photography",
   url: baseUrl,
   description: description || metaDescription,
   potentialAction: {
@@ -113,14 +113,14 @@ const formattedUpdatedDate = updatedDate
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title || pageTitle} />
     <meta property="og:description" content={description || metaDescription} />
-    <meta property="og:site_name" content={site_name || "Andreas Hartmann"} />
+    <meta property="og:site_name" content={site_name || "Andreas Hartmann - Photography"} />
     <meta
       property="og:image"
       content={image || `${baseUrl}${metaImage?.src}`}
     />
     <meta
       property="og:image:alt"
-      content={alt || "Cover image for stoicopa website"}
+      content={alt || "Cover image for Andreas Hartmann's website"}
     />
     <meta property="og:image:width" content="1280" />
     <meta property="og:image:height" content="720" />
@@ -136,7 +136,7 @@ const formattedUpdatedDate = updatedDate
     />
     <meta
       name="twitter:image:alt"
-      content={alt || "Cover image for stoicopa website"}
+      content={alt || "Cover image for Andreas Hartmann's website"}
     />
 
     <!-- Article-specific metadata -->
