@@ -6,10 +6,10 @@ import { getImage } from "astro:assets";
 const { is404Page = false } = Astro.props;
 
 const favicon_avif = await getImage({
-  src: "https://cdn.erfianugrah.com/ea_favicon.png",
+  src: "/images/andreas_logo.png",
   alt: "favicon",
-  width: 640,
-  height: 480,
+  width: 1280,
+  height: 960,
   decoding: "async",
   format: "avif",
 });
@@ -19,10 +19,10 @@ const favicon_avif = await getImage({
   <nav class="flex items-center justify-between w-full h-[30px]">
     {
       !is404Page && (
-        <div class="flex items-center h-[30px]">
+        <div class="flex items-center h-[100px]">
           <a href="/" class="block">
             <img
-              class="favicon dark:invert w-[30px] h-[30px]"
+              class="favicon invert dark:invert-0 w-[100px] h-[100px]"
               src={favicon_avif.src}
               alt="Home"
               width="30"
