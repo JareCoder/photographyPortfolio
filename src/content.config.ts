@@ -42,6 +42,24 @@ const authors = defineCollection({
   }),
 });
 
+const contacts = defineCollection({
+  // type: "content", // v2.5.0 and later
+  loader: glob({ pattern: "**\/[^_]*.mdx", base: "./src/content/contacts" }),
+  schema: z.object({
+    title: z.string(),
+    tags: z.array(z.string()),
+    author: z.string(),
+    image: z.object({
+      src: z.string(),
+      alt: z.string(),
+      positionx: z.string().optional(),
+      positiony: z.string().optional(),
+    }).optional(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+  }),
+});
+
 const cv = defineCollection({
   // type: "content", // v2.5.0 and later
   loader: glob({ pattern: "**\/[^_]*.mdx", base: "./src/content/cv" }),
@@ -125,5 +143,6 @@ const cv = defineCollection({
 export const collections = {
   imageCollections,
   authors,
+  contacts,
   cv,
 };
