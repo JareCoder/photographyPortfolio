@@ -49,6 +49,9 @@ const contacts = defineCollection({
     title: z.string(),
     tags: z.array(z.string()),
     author: z.string(),
+    email: z.string().email().optional(),
+    linkedin: z.string().url().optional(),
+    instagram: z.string().url().optional(),
     image: z.object({
       src: z.string(),
       alt: z.string(),

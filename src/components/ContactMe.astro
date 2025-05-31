@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const email = Astro.props.email || '';
+const linkedin = Astro.props.linkedin || '';
+const instragram = Astro.props.instagram || '';
+---
+
+<div class="w-full">
+  <h2 class="text-2xl font-bold mb-4">My Links</h2>
+  <div class="flex flex-col gap-4">
+    {email && (
+        <a href={`mailto:${email}`} class="contact-link">
+            <Icon name="mdi:email-outline" class="h-[40px] w-[40px]" />
+            <span>{email}</span>
+        </a>
+    )}
+    {linkedin && (
+        <a href={linkedin} target="_blank" class="contact-link" target="_blank">
+            <Icon name="mdi:linkedin" class="h-[40px] w-[40px]" />
+            <span>LinkedIn</span>
+        </a>
+    )}
+    {instragram && (
+        <a href={instragram} target="_blank" class="contact-link" target="_blank">
+            <Icon name="mdi:instagram" class="h-[40px] w-[40px]" />
+            <span>Instagram</span>
+        </a>
+    )}
+  </div>

@@ -1,9 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
-import AuthorLayout from "../../layouts/AuthorLayout.astro";
+import ContactMeLayout from "../../layouts/ContactMeLayout.astro";
+import ContactMe from "../../components/ContactMe.astro";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("authors");
+  const blogEntries = await getCollection("contacts");
   return blogEntries.map((entry) => ({
     params: { id: entry.id },
     props: { entry },
@@ -12,14 +13,19 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const collection = "authors";
+const collection = "contacts";
 ---
 
-<AuthorLayout
+<ContactMeLayout
   frontmatter={entry.data}
   currentId={entry.id}
   collection={collection}
 >
   <p class="prose prose-slate dark:prose-invert italic no-underline"></p>
+  <ContactMe
+    email={entry.data.email}
+    linkedin={entry.data.linkedin}
+    instagram={entry.data.instagram}
+  />
   <Content />
-</AuthorLayout>
+</ContactMeLayout>
