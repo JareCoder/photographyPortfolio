@@ -5,7 +5,7 @@ import { getImage } from 'astro:assets';
 
 const backgroundImage = await getImage({
     src: '/images/Homepage_banner.png',
-    alt: 'Andreas Hartmann - Homepage',
+    alt: 'Andreas Hartman - Homepage',
     width: 3840,
     height: 2160,
     decoding: 'async',
@@ -15,7 +15,7 @@ const backgroundImage = await getImage({
 
 const mobileBackgroundImage = await getImage({
     src: '/images/Homepage_banner.png',
-    alt: 'Andreas Hartmann - Homepage',
+    alt: 'Andreas Hartman - Homepage',
     width: 1920,
     height: 1080,
     decoding: 'async',
@@ -24,7 +24,7 @@ const mobileBackgroundImage = await getImage({
 })
 ---
 
-<BaseLayout title="Andreas Hartmann - Homepage" description="Making memories by capturing them" is404Page={false} image={backgroundImage.src} >
+<BaseLayout title="Andreas Hartman - Homepage" description="Making memories by capturing them" is404Page={false} image={backgroundImage.src} >
     <HeroImage
         client:load
         backgroundImage={backgroundImage.src}
@@ -33,7 +33,7 @@ const mobileBackgroundImage = await getImage({
         positionX="50%"
         positionY="50%"
         tags={[]}
-        alt="Andreas Hartmann - Homepage"
+        alt="Andreas Hartman - Homepage"
     />
     <div class="flex flex-col items-center justify-center w-full h-full gap-4 px-4 py-8">
 
