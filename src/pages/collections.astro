@@ -5,12 +5,19 @@ import BlogPost from "../components/BlogPost.astro";
 import { sortByDate } from "../components/sortbydate";
 const pageTitle = "Collections";
 const allCollections = await getCollection("imageCollections");
+
+const withIndex = allCollections.filter((post) => post.data.orderIndex != null && post.data.orderIndex != undefined);
+const withoutIndex = allCollections.filter((post) => post.data.orderIndex == null || post.data.orderIndex == undefined);
+
+withIndex.sort((a, b) => a.data.orderIndex! - b.data.orderIndex!);
+withoutIndex.sort((a, b) => sortByDate(a, b));
+
+const sortedCollections = [...withIndex, ...withoutIndex];
 ---
 
 <BaseLayout title={pageTitle} is404Page={false}>
   {
-    allCollections
-      .sort(sortByDate)
+    sortedCollections
       .map((post) => (
         <BlogPost
           url={`/collections/${post.id}/`}

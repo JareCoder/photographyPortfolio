@@ -9,6 +9,7 @@ const imageCollections = defineCollection({
   schema: z.object({
     title: z.string(),
     tags: z.array(z.string()),
+    orderIndex: z.number().optional(),
     author: z.string(),
     description: z.string(),
     image: z.object({
