@@ -22,7 +22,7 @@ const imageAssets = await Promise.all(
 
 <div class="masonry not-prose">
   {
-    imageAssets.map((imageAsset, index) =>
+    imageAssets.map((imageAsset) =>
       imageAsset ? (
         <div class="image-container" id="gallery">
           <a href={imageAsset.src} class="image-link glightbox">
