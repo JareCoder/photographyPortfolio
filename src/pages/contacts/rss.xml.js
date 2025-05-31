@@ -8,8 +8,8 @@ export async function GET(context) {
   const contacts = await getCollection("contacts");
   return rss({
     stylesheet: "/rss/rss.xsl",
-    title: "stoicopa",
-    description: "My personal hamster wheel.",
+    title: "Andreas Hartman",
+    description: "Making memories by capturing them.",
     site: context.site,
     items: contacts.map((post) => ({
       title: post.data.title,
